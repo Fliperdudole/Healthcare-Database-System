@@ -1,6 +1,6 @@
-# Healthcare Database System
+# HealthVault Hub - A Healthcare Database System
 
-![Healthcare Database System Logo](link_to_your_logo.png)
+![Healthcare Database System Logo](HealthVault-Hub.png)
 
 ## Overview
 
