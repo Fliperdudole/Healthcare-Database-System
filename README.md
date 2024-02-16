@@ -17,4 +17,4 @@ The Healthcare Database System is a cutting-edge project designed to revolutioni
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/Fliperdudole/healthcare-database-system.git
+   git clone https://github.com/Fliperdudole/Healthcare-Database-System.git
