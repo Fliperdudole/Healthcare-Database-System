@@ -1,0 +1,85 @@
+.btn-clean {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Evolved Semi Bold', sans-serif;
+    opacity: .5;
+    animation: fadeEffect 1.25s infinite alternate;
+    text-shadow: 0 0 15px white, 0 0 30px white, 0 0 45px white;
+}
+
+/* Hide the button when it's faded out */
+.btn-clean.fade-out {
+    display: none;
+}
+
+/* Custom CSS for fading animation */
+@keyframes fadeEffect {
+    0% { opacity: 0.25; }
+    100% { opacity: 1; }
+}
+
+/* Custom CSS for fading animation */
+.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+/* Custom CSS for full-screen logo */
+.full-screen-logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* New CSS for positioning the new buttons */
+#staffSignInBtn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Evolved Semi Bold', sans-serif;
+    opacity: .5;
+    animation: fadeEffect 1.25s infinite alternate;
+    text-shadow: 0 0 15px white, 0 0 30px white, 0 0 45px white;
+}
+
+#patientSignInBtn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Evolved Semi Bold', sans-serif;
+    opacity: .5;
+    animation: fadeEffect 1.25s infinite alternate;
+    text-shadow: 0 0 15px white, 0 0 30px white, 0 0 45px white;
+}
