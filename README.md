@@ -18,3 +18,6 @@ The Healthcare Database System is a cutting-edge project designed to revolutioni
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/Fliperdudole/Healthcare-Database-System.git
+
+2. **Run Website**
+   Using a Live Server Extension in Visual Studio Code, run the login.html from the Website Folder
