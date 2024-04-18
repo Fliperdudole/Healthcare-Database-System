@@ -36,6 +36,7 @@ create table PATIENT (
     foreign key(InsuranceID) references INSURANCE(Inumber)
 );
 
+
 create table BILLING (
 	BillingID				VARCHAR(8) NOT NULL,
     BilledAmount			DECIMAL(12, 3),
@@ -49,18 +50,4 @@ create table BILLING (
     primary key(BillingID),
     foreign key(ProcedureName) references PROCEDURES(Pcode),
     foreign key(PatientSsn) references PATIENT(Ssn)
-);
-
-create table PATIENTLOGIN (
-	Username			VARCHAR(32) NOT NULL,
-	Password			VARCHAR(32) NOT NULL,
-	Ssn					VARCHAR(9) NOT NULL,
-	primary key(Username),
-	foreign key(Ssn) references Patient
-);
-
-create table STAFFLOGIN (
-	Username			VARCHAR(32) NOT NULL,
-	Password			VARCHAR(32) NOT NULL,
-	primary key(Username)
 );
