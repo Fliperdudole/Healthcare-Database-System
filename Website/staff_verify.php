@@ -11,12 +11,11 @@
         // Retrieve form data based on name keys
         $user = $_POST['user'];
         $pass = $_POST['pass'];
-        $type = $_POST['additional_info'];
         
         // Do whatever processing you need with $user and $pass
 
         // Echo back a response, this will be stored in xhr.responseText (in onload in Patient.js file)
-        echo "Username: $user<br>Password: $pass<br>User Type: ";
+        // echo "Username: $user<br>Password: $pass<br>User Type: ";
 
         // Initialize query
         $sql = "SELECT * 
@@ -28,7 +27,8 @@
 
         // Check for valid patient login (something was returned)
         if (mysqli_num_rows($result) > 0) {
-            echo "Valid Login";
+            header("Location: staff_service.php");
+            exit; 
         }
         else {
             echo "Invalid Username or Password";
@@ -38,4 +38,6 @@
         // If not received through POST method, handle the case accordingly
         echo "Form data not received.";
     }
+
+    mysqli_close($conn);
 ?>

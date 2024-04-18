@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("form");
     const responseDiv = document.getElementById("response");
 
+    function redirectToPatientService() {
+        window.location.href = 'patient_service.php';
+    }
+
     // Create submit event
     form.addEventListener("submit", (event) => {
         // Prevents the page from reloading on submission, which
