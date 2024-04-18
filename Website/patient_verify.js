@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const xhr = new XMLHttpRequest();
 
         // Open it using POST and correct php file
-        xhr.open("POST", "verify.php", true);
+        xhr.open("POST", "patient_verify.php", true);
         
         // Waits until the response is recieved from the php file. 
         // This is triggered after both send executes later, and the 
