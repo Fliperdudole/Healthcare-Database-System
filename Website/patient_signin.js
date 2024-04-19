@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("form");
     const responseDiv = document.getElementById("response");
 
+
     // Create submit event
     form.addEventListener("submit", (event) => {
         // Prevents the page from reloading on submission, which
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const xhr = new XMLHttpRequest();
 
         // Open it using POST and correct php file
-        xhr.open("POST", "staff_verify.php", true);
+        xhr.open("POST", "patient_verify.php", true);
         
         // Waits until the response is recieved from the php file. 
         // This is triggered after both send executes later, and the 
@@ -23,7 +24,12 @@ document.addEventListener("DOMContentLoaded", function() {
             // If message moved successfully
             if (xhr.status === 200) {
                 // Update div in pateint_signin with php response
-                responseDiv.innerHTML = xhr.responseText;
+                if(xhr.responseText == "valid") {
+                    window.location.href = 'patient_service.php';
+                }
+                else {
+                    responseDiv.innerHTML = "not a valid login";
+                }
             } else {
                 console.error("Request failed:", xhr.statusText);
             }
