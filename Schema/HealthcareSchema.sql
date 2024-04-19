@@ -47,7 +47,7 @@ create table BILLING (
     PatientSsn				VARCHAR(9),
     InsuranceNo				VARCHAR(12),
     primary key(BillingID),
-    foreign key(ProcedureName) references PROCEDURES(Pcode),
+    foreign key(ProcedureCode) references PROCEDURES(Pcode),
     foreign key(PatientSsn) references PATIENT(Ssn)
 );
 
@@ -56,7 +56,7 @@ create table PATIENTLOGIN (
 	Password			VARCHAR(32) NOT NULL,
 	Ssn					VARCHAR(9) NOT NULL,
 	primary key(Username),
-	foreign key(Ssn) references Patient
+	foreign key(Ssn) references Patient(Ssn)
 );
 
 create table STAFFLOGIN (

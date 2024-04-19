@@ -23,13 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
             // If message moved successfully
             if (xhr.status === 200) {
                 // Update div in pateint_signin with php response
-                if(xhr.responseText == "vaild") {
-                    responseDiv.innerHTML = "valid login";
+                if(xhr.responseText == "valid") {
+                    window.location.href = 'staff_service.php'
                 }
-                else {
+                else{
                     responseDiv.innerHTML = "not a valid login";
-                }
+                } 
             } else {
+
                 console.error("Request failed:", xhr.statusText);
             }
         };

@@ -19,19 +19,19 @@
 
         // Initialize query
         $sql = "SELECT * 
-        FROM stafflogin 
-        WHERE username = '$user' AND password = '$pass'";
+            FROM stafflogin 
+            WHERE username = '$user' AND password = '$pass'";
 
-        // Run Query
+        // Run query
         $result = mysqli_query($conn, $sql);
 
-        // Check for valid patient login (something was returned)
+        // Check for valid patient login (something was returned from query)
+        // Echo back a response, this will be stored in xhr.responseText (in onload in Patient.js file)
         if (mysqli_num_rows($result) > 0) {
-            header("Location: staff_service.php");
-            exit; 
+            echo "valid";            
         }
         else {
-            echo "Invalid Username or Password";
+            echo "invalid";
         }
 
     } else {
@@ -40,4 +40,5 @@
     }
 
     mysqli_close($conn);
+
 ?>
