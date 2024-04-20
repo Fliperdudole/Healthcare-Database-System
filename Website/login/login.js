@@ -30,10 +30,10 @@ function fadeOutAndRedirect(url) {
 
 // Click event listener for the Staff Sign In button
 document.getElementById("staffSignInBtn").addEventListener("click", function() {
-    fadeOutAndRedirect("staff_signin.html"); // Redirect to the Staff Sign In page
+    fadeOutAndRedirect("../staff/staff_signin.html"); // Redirect to the Staff Sign In page
 });
 
 // Click event listener for the Patient Sign In button
 document.getElementById("patientSignInBtn").addEventListener("click", function() {
-    fadeOutAndRedirect("patient_signin.html"); // Redirect to the Patient Sign In page
+    fadeOutAndRedirect("../patient/patient_signin.html"); // Redirect to the Patient Sign In page
 });

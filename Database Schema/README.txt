@@ -21,6 +21,12 @@
 		- If there's a script for creating the database schema, execute it first.
 		- Then execute scripts for data manipulation, stored procedures, functions, triggers, etc., as needed.
 
+	ALTERNATIVE:
+	1. Open phpMyAdmin
+	2. Go to Import tab
+	3. Import 'DatabaseScript.sql'
+
+
 	Verify Execution: After executing all the SQL scripts, verify that the database schema 
 	has been created successfully and any data manipulation operations have been performed 	correctly.
 
