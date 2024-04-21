@@ -26,179 +26,128 @@
 
 
     <?php
-        $server = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "healthcare";
+$server = "localhost";
+$username = "root";
+$password = "";
+$dbname = "healthcare";
 
-        $conn = new mysqli($server, $username, $password, $dbname);
+$conn = new mysqli($server, $username, $password, $dbname);
 
-        // Check if form data is received
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Check if form data is received
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-            $ssn = $_POST["ssn"];
+    $ssn = $_POST["ssn"];
 
-            echo "<br><br><b>Patient Wants:</b><br>";
-            
-            if($ssn != NULL) {
-            // Evaluate based on chosen checkboxes.
-            foreach ($_POST['patientdata'] as $selection) {
-                if ($selection == "billing") {
-                    echo "<br><br>";
+    echo "<h2>Patient Information</h2>";
 
-                    echo "Fetching Billing Information:<br>";
-                
-                    // SQL query
-                    $sql = "SELECT * FROM billing WHERE PatientSsn = '$ssn'";
-                
-                    // Run query
-                    $result = mysqli_query($conn, $sql);
-                
-                    // Check if there are any rows returned
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through each row in the result set
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            // Print out each row
-                            echo "<br>-----------------------------------------------<br>";
-                            echo "Billing ID: " . $row["BillingID"] . "<br>";
-                            echo "Billed Amount: " . $row["BilledAmount"] . "<br>";
-                            echo "Billing Description: " . $row["BillingDescription"] . "<br>";
-                            echo "Insurance Payment: " . $row["InsurancePayment"] . "<br>";
-                            echo "Patient Payment: " . $row["PatientPayment"] . "<br>";
-                            echo "Bill Date: " . $row["BillDate"] . "<br>";
-                            echo "ProcedureCode: " . $row["ProcedureCode"] . "<br>";
-                            echo "Patient SSN: " . $row["PatientSsn"] . "<br>";
-                            echo "Insurance Number: " . $row["InsuranceNo"] . "<br>";
-                            echo "-----------------------------------------------<br>";
+    // Check if SSN is provided
+    if ($ssn != NULL) {
+        echo "<table>";
+        foreach ($_POST['patientdata'] as $selection) {
+            // Evaluate based on chosen checkboxes
+            if ($selection == "billing") {
+                echo "<tr><th colspan='2'>Billing Information</th></tr>";
+                // SQL query
+                $sql = "SELECT * FROM billing WHERE PatientSsn = '$ssn'";
+                // Run query
+                $result = mysqli_query($conn, $sql);
+                // Check if there are any rows returned
+                if (mysqli_num_rows($result) > 0) {
+                    // Loop through each row in the result set
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>Billing ID</td><td>" . $row["BillingID"] . "</td></tr>";
+                        echo "<tr><td>Billed Amount</td><td>" . $row["BilledAmount"] . "</td></tr>";
+                        echo "<tr><td>Billing Description</td><td>" . $row["BillingDescription"] . "</td></tr>";
+                        echo "<tr><td>Insurance Payment</td><td>" . $row["InsurancePayment"] . "</td></tr>";
+                        echo "<tr><td>Patient Payment</td><td>" . $row["PatientPayment"] . "</td></tr>";
+                        echo "<tr><td>Bill Date</td><td>" . $row["BillDate"] . "</td></tr>";
+                        echo "<tr><td>Procedure Code</td><td>" . $row["ProcedureCode"] . "</td></tr>";
+                        echo "<tr><td>Patient SSN</td><td>" . $row["PatientSsn"] . "</td></tr>";
+                        echo "<tr><td>Insurance Number</td><td>" . $row["InsuranceNo"] . "</td></tr>";
 
-                        }
-                    } else {
-                        // If no rows are returned
-                        echo "No billing info found for the provided SSN.";
+                        
                     }
-                
-                    // Free result set
-                    mysqli_free_result($result);
                 } else {
-                    // Handle other cases if needed
+                    echo "<tr><td colspan='2'>No billing info found for the provided SSN.</td></tr>";
                 }
-                
-                if($selection == "procedures") {
-                    echo "<br><br>";
+            } elseif ($selection == "procedures") {
+                echo "<tr><th colspan='2'>Procedure Information</th></tr>";
+                // SQL query
+                $sql = "SELECT P.* FROM PROCEDURES P JOIN BILLING B ON P.Pcode = B.ProcedureCode JOIN PATIENT PT ON B.PatientSsn = PT.Ssn WHERE PT.Ssn = '$ssn'";
+                // Run query
+                $result = mysqli_query($conn, $sql);
+                // Check if there are any rows returned
+                if (mysqli_num_rows($result) > 0) {
+                    // Loop through each row in the result set
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>Procedure Name</td><td>" . $row["Pname"] . "</td></tr>";
+                        echo "<tr><td>Procedure Code</td><td>" . $row["Pcode"] . "</td></tr>";
+                        echo "<tr><td>Procedure Location</td><td>" . $row["Plocation"] . "</td></tr>";
+                        echo "<tr><td>Procedure Date</td><td>" . $row["Pdate"] . "</td></tr>";
+                        echo "<tr><td>Procedure Description</td><td>" . $row["PDescription"] . "</td></tr>";
 
-                    echo "Fetching Procedure Information:<br>";
-
-                    // SQL query
-                    $sql = "SELECT P.*
-                    FROM PROCEDURES P
-                    JOIN BILLING B ON P.Pcode = B.ProcedureCode
-                    JOIN PATIENT PT ON B.PatientSsn = PT.Ssn
-                    WHERE PT.Ssn = '$ssn'";
-                
-                    // Run query
-                    $result = mysqli_query($conn, $sql);
-
-                    // Check if there are any rows returned
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through each row in the result set
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            // Print out each row
-                            echo "<br>-----------------------------------------------<br>";
-                            echo "Procedure Name: " . $row["Pname"] . "<br>";
-                            echo "Procedure Code: " . $row["Pcode"] . "<br>";
-                            echo "Procedure Location: " . $row["Plocation"] . "<br>";
-                            echo "Procedure Date: " . $row["Pdate"] . "<br>";
-                            echo "Procedure Description: " . $row["PDescription"] . "<br>";
-                            echo "-----------------------------------------------<br>";
-
-                        }
-                    } else {
-                        // If no rows are returned
-                        echo "No Procedures provided for the Ssn.";
                     }
+                } else {
+                    echo "<tr><td colspan='2'>No procedures provided for the SSN.</td></tr>";
                 }
-                if($selection == "personal") {
-                    echo "<br><br>";
+            } elseif ($selection == "personal") {
+                echo "<tr><th colspan='2'>Personal Information</th></tr>";
+                // SQL query
+                $sql = "SELECT * FROM patient WHERE Ssn = '$ssn'";
+                // Run query
+                $result = mysqli_query($conn, $sql);
+                // Check if there are any rows returned
+                if (mysqli_num_rows($result) > 0) {
+                    // Loop through each row in the result set
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>First Name</td><td>" . $row["Fname"] . "</td></tr>";
+                        echo "<tr><td>Middle Initial</td><td>" . $row["Minit"] . "</td></tr>";
+                        echo "<tr><td>Last Name</td><td>" . $row["Lname"] . "</td></tr>";
+                        echo "<tr><td>SSN</td><td>" . $row["Ssn"] . "</td></tr>";
+                        echo "<tr><td>Birthday</td><td>" . $row["BDate"] . "</td></tr>";
+                        echo "<tr><td>Email</td><td>" . $row["Email"] . "</td></tr>";
+                        echo "<tr><td>Address</td><td>" . $row["Address"] . "</td></tr>";
+                        echo "<tr><td>City</td><td>" . $row["City"] . "</td></tr>";
+                        echo "<tr><td>State</td><td>" . $row["State"] . "</td></tr>";
+                        echo "<tr><td>ZipCode</td><td>" . $row["ZipCode"] . "</td></tr>";
+                        echo "<tr><td>Sex</td><td>" . $row["Sex"] . "</td></tr>";
+                        echo "<tr><td>Insurance ID</td><td>" . $row["InsuranceID"] . "</td></tr>";
+                        echo "<tr><td>Physician Name</td><td>" . $row["PhysicianName"] . "</td></tr>";
 
-                    echo "Fetching Personal Information:<br>";
-
-                    // SQL query
-                    $sql = "Select * from patient where Ssn = '$ssn'";
-                
-                    // Run query
-                    $result = mysqli_query($conn, $sql);
-
-                    // Check if there are any rows returned
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through each row in the result set
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            // Print out each row
-                            echo "<br>-----------------------------------------------<br>";
-                            echo "First Name: " . $row["Fname"] . "<br>";
-                            echo "Middle Initial: " . $row["Minit"] . "<br>";
-                            echo "Last Name: " . $row["Lname"] . "<br>";
-                            echo "Ssn: " . $row["Ssn"] . "<br>";
-                            echo "Birthday: " . $row["BDate"] . "<br>";
-                            echo "Email: " . $row["Email"] . "<br>";
-                            echo "Address: " . $row["Address"] . "<br>";
-                            echo "City: " . $row["City"] . "<br>";
-                            echo "State: " . $row["State"] . "<br>";
-                            echo "ZipCode: " . $row["ZipCode"] . "<br>";
-                            echo "Sex: " . $row["Sex"] . "<br>";
-                            echo "Insurance ID: " . $row["InsuranceID"] . "<br>";
-                            echo "Physician Name: " . $row["PhysicianName"] . "<br>";
-                            echo "-----------------------------------------------<br>";
-
-
-
-                        }
-                    } else {
-                        // If no rows are returned
-                        echo "No information provided for the Ssn.";
                     }
+                } else {
+                    echo "<tr><td colspan='2'>No personal information provided for the SSN.</td></tr>";
                 }
-                if($selection == "insurance") {
-                    echo "<br><br>";
-                    echo "Fetching Insurance Information:<br>";
+            } elseif ($selection == "insurance") {
+                echo "<tr><th colspan='2'>Insurance Information</th></tr>";
+                // SQL query
+                $sql = "SELECT I.* FROM INSURANCE I JOIN PATIENT P ON I.Inumber = P.InsuranceID WHERE P.Ssn = '$ssn'";
+                // Run query
+                $result = mysqli_query($conn, $sql);
+                // Check if there are any rows returned
+                if (mysqli_num_rows($result) > 0) {
+                    // Loop through each row in the result set
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>Insurance Number</td><td>" . $row["Inumber"] . "</td></tr>";
+                        echo "<tr><td>Insurance Name</td><td>" . $row["Iname"] . "</td></tr>";
+                        echo "<tr><td>Coverage Start Date</td><td>" . $row["CoverageStart"] . "</td></tr>";
+                        echo "<tr><td>Coverage End Date</td><td>" . $row["CoverageEnd"] . "</td></tr>";
+                        echo "<tr><td>Policy Number</td><td>" . $row["PolicyNumber"] . "</td></tr>";
 
-                    // SQL query
-                    $sql = "SELECT I.*
-                    FROM INSURANCE I
-                    JOIN PATIENT P ON I.Inumber = P.InsuranceID
-                    WHERE P.Ssn = '$ssn'";
-                
-                    // Run query
-                    $result = mysqli_query($conn, $sql);
-
-                    // Check if there are any rows returned
-                    if (mysqli_num_rows($result) > 0) {
-                        // Loop through each row in the result set
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            // Print out each row
-                            echo "<br>-----------------------------------------------<br>";
-                            echo "Insurance Number: " . $row["Inumber"] . "<br>";
-                            echo "Insurance Name: " . $row["Iname"] . "<br>";
-                            echo "Coverage Start Date: " . $row["CoverageStart"] . "<br>";
-                            echo "Coverage End Date: " . $row["CoverageEnd"] . "<br>";
-                            echo "Policy Number: " . $row["PolicyNumber"] . "<br>";
-                            echo "-----------------------------------------------<br>";
-
-                        }
-                    } else {
-                        // If no rows are returned
-                        echo "No insurance information provided for the Ssn.";
                     }
+                } else {
+                    echo "<tr><td colspan='2'>No insurance information provided for the SSN.</td></tr>";
                 }
             }
-        } else{
-            echo "SSN is required.";
         }
+        echo "</table>";
+    } else {
+        echo "SSN is required.";
     }
-           
+}
 
-
-        mysqli_close($conn);
-    ?>
+mysqli_close($conn);
+?>
 
 
 </body>

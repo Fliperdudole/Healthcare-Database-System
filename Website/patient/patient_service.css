@@ -9,7 +9,7 @@ body {
 form {
     margin: 0 auto; /* Center the form */
     width: 300px; /* Adjust as needed */
-    text-align: center; /* Center-align form elements */
+    text-align: left; /* left-align form elements */
 }
 
 input[type="text"], input[type="date"], input[type="checkbox"], input[type="submit"], button {
@@ -45,4 +45,22 @@ input[type="checkbox"] {
 label {
     display: inline-block;
     vertical-align: middle;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 50%; /* Adjust the width as needed */
+    margin: 20px auto; /* Center the table and add margin */
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #333333;
+    color: white;
 }
