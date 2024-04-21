@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="patient_service.css">
+
 </head>
 <body>
+
+    <button onclick="window.location.href='update_patient.php';">Update Patient Information</button>
+    <br>
     <h1>Access Patient Info</h1>
     <form id="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <!-- This is a placeholder and will need to be moved. This will be on a case by case basis i think. -->
         Enter SSN: <input type="text" name="ssn"><br><br>
 
-        What would you like to access:<br>
+        What would you like to access:<br><br>
         <input type="checkbox" name="patientdata[]" value="billing"> Billing<br>
         <input type="checkbox" name="patientdata[]" value="procedures"> Procedures<br>
         <input type="checkbox" name="patientdata[]" value="insurance"> Insurance Info<br>

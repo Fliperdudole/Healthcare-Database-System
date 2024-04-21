@@ -5,17 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="patient_signin.js"></script>
+    <link rel="stylesheet" type="text/css" href="patient_signin.css">
 </head>
 <body>
+    <br><br>
     <h1>Patient Sign In</h1>
+    <br><br>
+    
     <form id="form" method="post">
         Username: <input type="text" name="user"><br>
         Password: <input type="text" name="pass"><br>
         <input type="submit">
     </form>
     <br>
+    <button onclick="redirectToChange()" class="change-button">Change Username or Password</button>
+    <script>
+        function redirectToChange() {
+            window.location.href = "Change_Identification.php";
+        }
+    </script>
+
+    <br>
+    <br>
+    <button onclick="redirectToChange()" class="change-button">New Patient?</button>
+    <script>
+        function redirectToChange() {
+            window.location.href = "register_patient.php";
+        }
+</script>
+
+    <br>
     <div id="response">
-        this
-    </div>
+    
+    </div>    
 </body>
 </html>

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     window.location.href = 'patient_service.php';
                 }
                 else {
-                    responseDiv.innerHTML = "not a valid login";
+                    responseDiv.innerHTML = "Incorrect Username or Password.";
                 }
             } else {
                 console.error("Request failed:", xhr.statusText);

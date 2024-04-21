@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     window.location.href = 'staff_service.php'
                 }
                 else{
-                    responseDiv.innerHTML = "not a valid login";
+                    responseDiv.innerHTML = "Incorrect Username or Password.";
                 } 
             } else {
 

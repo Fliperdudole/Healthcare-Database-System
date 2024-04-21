@@ -1,0 +1,48 @@
+body {
+    background-color: #666666; /* Dark grey background */
+    color: #ffffff; /* White text */
+    font-family: Arial, sans-serif;
+    text-align: center; /* Center-align text */
+    font-size: 20px; /* Increase font size */
+}
+
+form {
+    margin: 0 auto; /* Center the form */
+    width: 300px; /* Adjust as needed */
+    text-align: center; /* Center-align form elements */
+}
+
+input[type="text"], input[type="date"], input[type="checkbox"], input[type="submit"], button {
+    width: calc(100% - 30px); /* Adjust width to accommodate padding */
+    padding: 15px; /* Increase padding */
+    margin: 10px 0; /* Increase margin */
+    border: none;
+    border-radius: 8px; /* Increase border radius */
+    font-size: 20px; /* Increase font size */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+input[type="submit"], button {
+    background-color: #333333; /* Dark grey button */
+    color: #ffffff; /* White text */
+    cursor: pointer;
+}
+
+button {
+    background-color: #333333; /* Dark grey button */
+    color: #ffffff; /* White text */
+    cursor: pointer;
+}
+
+/* Align checkboxes and labels on the same line */
+input[type="checkbox"] {
+    display: inline-block;
+    width: auto; /* Set width to auto */
+    vertical-align: middle;
+    margin-right: 5px; /* Add margin to separate checkbox and label */
+}
+
+label {
+    display: inline-block;
+    vertical-align: middle;
+}
